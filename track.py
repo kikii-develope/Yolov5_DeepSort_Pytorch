@@ -36,7 +36,7 @@ if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
-
+line = [(0, 500), (1920, 500)]
 def detect(opt):
     out, source, yolo_model, deep_sort_model, show_vid, save_vid, save_txt, imgsz, evaluate, half, project, name, exist_ok= \
         opt.output, opt.source, opt.yolo_model, opt.deep_sort_model, opt.show_vid, opt.save_vid, \
@@ -136,6 +136,7 @@ def detect(opt):
             else:
                 p, im0, _ = path, im0s.copy(), getattr(dataset, 'frame', 0)
 
+            cv2.line(im0,line[0],line[1],(255, 255, 0),5)
             p = Path(p)  # to Path
             save_path = str(save_dir / p.name)  # im.jpg, vid.mp4, ...
             s += '%gx%g ' % img.shape[2:]  # print string
